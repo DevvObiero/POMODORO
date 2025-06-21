@@ -80,6 +80,7 @@ function SettingsContextProvider(props) {
 
   const pauseTimerSound = () => {
     timerAudioRef.current.pause();
+    timerAudioRef.current.currentTime = 0; // Reset to start for next play
   };
 
   const playFinishSound = () => {
