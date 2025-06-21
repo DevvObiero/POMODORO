@@ -1,4 +1,4 @@
-import { useState, createContext } from 'react';
+import { useState, createContext, useRef } from 'react';
 
 export const SettingsContext = createContext();
 
@@ -9,15 +9,20 @@ function SettingsContextProvider(props) {
     short: 5,
     long: 15,
     active: 'work',
+    timerSound: 'silent',
+    finishSound: 'bell',
   });
   const [startAnimate, setStartAnimate] = useState(false);
+
+  const timerAudioRef = useRef(new Audio());
+  const finishAudioRef = useRef(new Audio());
 
   function setCurrentTimer(active_state) {
     updateExecute({
       ...executing,
       active: active_state,
     });
-    setTimerTime(executing);
+    setTimerTime({ ...executing, active: active_state });
   }
 
   function startTimer() {
@@ -65,6 +70,29 @@ function SettingsContextProvider(props) {
     setStartAnimate(false);
   }
 
+  const playTimerSound = () => {
+    if (executing.timerSound !== 'silent') {
+      timerAudioRef.current.src = `/sounds/${executing.timerSound}.mp3`;
+      timerAudioRef.current.loop = true;
+      timerAudioRef.current.play().catch(error => console.error('Error playing timer sound:', error));
+    }
+  };
+
+  const pauseTimerSound = () => {
+    timerAudioRef.current.pause();
+  };
+
+  const playFinishSound = () => {
+    if (executing.finishSound === 'bell') {
+      finishAudioRef.current.src = '/sounds/bell.mp3';
+      finishAudioRef.current.play().catch(error => console.error('Error playing finish sound:', error));
+    } else if (executing.finishSound === 'voice') {
+      finishAudioRef.current.src =
+        executing.active === 'work' ? '/sounds/voice_work_finish.mp3' : '/sounds/voice_break_finish.mp3';
+      finishAudioRef.current.play().catch(error => console.error('Error playing finish sound:', error));
+    }
+  };
+
   return (
     <SettingsContext.Provider
       value={{
@@ -78,6 +106,9 @@ function SettingsContextProvider(props) {
         SettingsBtn,
         setCurrentTimer,
         stopAimate,
+        playTimerSound,
+        pauseTimerSound,
+        playFinishSound,
       }}
     >
       {props.children}

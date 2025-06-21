@@ -2,35 +2,30 @@ import React, { useContext, useState } from 'react';
 import { SettingsContext } from '../context/SettingsContext';
 
 const SetPomodoro = () => {
-  const [newTimer, setNewTimer] = useState({
+  const { executing, updateExecute } = useContext(SettingsContext);
+
+  const defaultTimer = {
     work: 25,
     short: 5,
     long: 15,
     active: 'work',
-  });
+    timerSound: 'silent',
+    finishSound: 'bell',
+  };
 
-  const { updateExecute } = useContext(SettingsContext);
+  const [newTimer, setNewTimer] = useState({ ...defaultTimer, ...executing });
 
-  const handleChange = input => {
-    const { name, value } = input.target;
-    switch (name) {
-      case 'work':
-        setNewTimer({ ...newTimer, work: parseInt(value) });
-        break;
-      case 'shortBreak':
-        setNewTimer({ ...newTimer, short: parseInt(value) });
-        break;
-      case 'longBreak':
-        setNewTimer({ ...newTimer, long: parseInt(value) });
-        break;
-      default:
-        break;
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    if (name === 'timerSound' || name === 'finishSound') {
+      setNewTimer({ ...newTimer, [name]: value });
+    } else {
+      setNewTimer({ ...newTimer, [name]: parseInt(value) || 0 });
     }
   };
 
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Submitting newTimer:', newTimer); // Debug log
     updateExecute(newTimer);
   };
 
@@ -38,27 +33,47 @@ const SetPomodoro = () => {
     <div className="form-container">
       <form noValidate onSubmit={handleSubmit}>
         <div className="input-wrapper">
+          {/* <label>Durations (minutes)</label> */}
           <input
             className="input"
             type="number"
             name="work"
+            placeholder="Work"
             onChange={handleChange}
             value={newTimer.work}
+            min="1"
           />
           <input
             className="input"
             type="number"
             name="shortBreak"
+            placeholder="Short Break"
             onChange={handleChange}
             value={newTimer.short}
+            min="1"
           />
           <input
             className="input"
             type="number"
             name="longBreak"
+            placeholder="Long Break"
             onChange={handleChange}
             value={newTimer.long}
+            min="1"
           />
+        </div>
+        <div className="sound-settings">
+          <label>Timer sound</label>
+          <select name="timerSound" value={newTimer.timerSound} onChange={handleChange}>
+            <option value="silent">Silent</option>
+            <option value="ticking">Ticking</option>
+            <option value="lofi">Lo-fi</option>
+          </select>
+          <label>Finish sound</label>
+          <select name="finishSound" value={newTimer.finishSound} onChange={handleChange}>
+            <option value="bell">Bell</option>
+            <option value="voice">Voice</option>
+          </select>
         </div>
         <button type="submit">Set Timer</button>
       </form>
