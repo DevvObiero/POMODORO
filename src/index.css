@@ -3,6 +3,10 @@
 @tailwind components;
 @tailwind utilities;
 
+/* html, body {
+  overflow: hidden;
+} */
+
 #root {
   margin: 0;
   padding: 0;
@@ -33,12 +37,13 @@ code {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top:-50px ;
-  justify-content: center;
+  margin-top:-90px ;
+  justify-content: center; /* This ensures center alignment */
   min-height: 100vh;
   background: rgb(255, 255, 255);
-  /* background: radial-gradient(circle, #1E2140 0%, #151932 65%); */
+  padding: 0;
 }
+
 
 .container h1 {
   font-size: 2.6rem;
@@ -68,24 +73,25 @@ code {
 }
 
 .time-wrapper {
+  margin-top: -30px;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 15rem;
-  width: 15rem;
+  height: 12rem;
+  width: 12rem;
   border-radius: 7.5rem;
   color: #efefef;
   background: #151932;
   font-size: 3.5rem;
   box-shadow: 1rem 1.5rem 2rem rgba(0, 0, 0, 0.6);
 }
-
 .button-wrapper {
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 2rem;
 }
+
 
 button {
   color: #efefef;
@@ -233,4 +239,108 @@ button:hover {
 
 .header a:hover {
   color:    #10ce69;
+}
+
+
+
+.center-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.timer-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+padding: 60px;
+}
+
+.button-wrapper {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  padding: 0;
+  margin: 0;
+}
+
+
+
+/* Tablet styles */
+@media (max-width: 900px) {
+  .container {
+  margin-top:-400px ;
+  }
+  .container h1 {
+    font-size: 2rem;
+  }
+  .time-wrapper {
+    height: 10rem;
+    width: 10rem;
+    font-size: 2.2rem;
+  }
+  .time-wrapper{
+margin-bottom: -40px;
+  }
+
+
+
+  .input-group input,
+  .input-wrapper input {
+    height: 45px;
+    width: 45px;
+    font-size: 11pt;
+  }
+
+  .header {
+    padding: 10px 10px;
+    gap: 0.5rem;
+  }
+}
+
+
+
+
+/* Mobile styles */
+@media (max-width: 600px) {
+   .time-wrapper {
+    width: 10rem;
+    height: 10rem;
+    font-size: 2.5rem;
+  }
+
+  .container {
+  margin-top:-140px ;
+  /* padding-right: 67px; */
+  padding: 0;
+  }
+
+  .center-block {
+    margin-top: 1rem;
+    gap: 1rem;
+  }
+
+  .button-wrapper button {
+    font-size: 0.75rem;
+    min-width: 70px;
+    padding: 0.4rem 1rem;
+  }
+
+
+  .input-group input,
+  .input-wrapper input {
+    height: 35px;
+    width: 35px;
+    font-size: 9pt;
+    margin-right: 0.2rem;
+  }
+
+  .sound-settings select {
+    width: 100px;
+    font-size: 0.8rem;
+  }
 }

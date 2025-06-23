@@ -34,7 +34,7 @@ const App = () => {
   return (
     <div className="container">
       <h1>Pomodoro</h1>
-      <small>Maximize your Productivity</small>
+      <small className='bomboclat' >Maximize your Productivity</small>
       {pomodoro !== 0 ? (
         <>
           <ul className="labels">
@@ -61,25 +61,31 @@ const App = () => {
             </li>
           </ul>
           <Button title="Settings" _callback={SettingsBtn} />
-          <div className="timer-container">
-            <div className="time-wrapper">
-              <CountdownAnimation key={pomodoro} timer={pomodoro} animate={startAnimate}>
-                {children}
-              </CountdownAnimation>
-            </div>
-          </div>
-          <div className="button-wrapper">
-            <Button
-              title="Start"
-              activeClass={!startAnimate ? 'active' : undefined}
-              _callback={startTimer}
-            />
-            <Button
-              title="Pause"
-              activeClass={startAnimate ? 'active' : undefined}
-              _callback={pauseTimer}
-            />
-          </div>
+      
+         <div className="center-block">
+  <div className="timer-container">
+    <div className="time-wrapper">
+      <CountdownAnimation key={pomodoro} timer={pomodoro} animate={startAnimate}>
+        {children}
+      </CountdownAnimation>
+    </div>
+  </div>
+  <div className="button-wrapper">
+    <Button
+      title="Start"
+      className="start"
+      activeClass={!startAnimate ? 'active' : undefined}
+      _callback={startTimer}
+    />
+    <Button
+      title="Pause"
+      className="pause"
+      activeClass={startAnimate ? 'active' : undefined}
+      _callback={pauseTimer}
+    />
+  </div>
+</div>
+
         </>
       ) : (
         <SetPomodoro />
