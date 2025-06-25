@@ -1,4 +1,4 @@
-import { useState, createContext, useRef } from 'react';
+import { useState, createContext, useRef, useEffect } from 'react';
 
 export const SettingsContext = createContext();
 
@@ -13,16 +13,49 @@ function SettingsContextProvider(props) {
     finishSound: 'bell',
   });
   const [startAnimate, setStartAnimate] = useState(false);
+  const [sessionCount, setSessionCount] = useState(1);
+  const [totalSessions] = useState(4);
 
   const timerAudioRef = useRef(new Audio());
   const finishAudioRef = useRef(new Audio());
+
+  const updateSessionDisplay = () => {
+    const sessionDisplay = document.getElementById('session-display');
+    if (sessionDisplay) {
+      sessionDisplay.textContent = `${sessionCount}/${totalSessions}`;
+    }
+  };
+
+  useEffect(() => {
+    const handleReset = () => {
+      setExecuting({
+        work: 25,
+        short: 5,
+        long: 15,
+        active: 'work',
+        timerSound: 'silent',
+        finishSound: 'bell',
+      });
+      setPomodoro(0);
+      setStartAnimate(false);
+      setSessionCount(1);
+      updateSessionDisplay();
+      pauseTimerSound();
+    };
+
+    window.addEventListener('resetPomodoro', handleReset);
+    return () => window.removeEventListener('resetPomodoro', handleReset);
+  }, []);
+
+  useEffect(() => {
+    updateSessionDisplay();
+  }, [sessionCount]);
 
   function setCurrentTimer(active_state) {
     updateExecute({
       ...executing,
       active: active_state,
     });
-    setTimerTime({ ...executing, active: active_state });
   }
 
   function startTimer() {
@@ -40,8 +73,17 @@ function SettingsContextProvider(props) {
   };
 
   const SettingsBtn = () => {
-    setExecuting({});
+    setExecuting({
+      work: 25,
+      short: 5,
+      long: 15,
+      active: 'work',
+      timerSound: 'silent',
+      finishSound: 'bell',
+    });
     setPomodoro(0);
+    setSessionCount(1);
+    updateSessionDisplay();
   };
 
   const updateExecute = updatedSettings => {
@@ -68,6 +110,17 @@ function SettingsContextProvider(props) {
 
   function stopAimate() {
     setStartAnimate(false);
+    if (executing.active === 'work') {
+      if (sessionCount < totalSessions) {
+        setCurrentTimer('short');
+        setSessionCount(prev => prev + 1);
+      } else {
+        setCurrentTimer('long');
+        setSessionCount(1);
+      }
+    } else if (executing.active === 'short' || executing.active === 'long') {
+      setCurrentTimer('work');
+    }
   }
 
   const playTimerSound = () => {
@@ -80,7 +133,7 @@ function SettingsContextProvider(props) {
 
   const pauseTimerSound = () => {
     timerAudioRef.current.pause();
-    timerAudioRef.current.currentTime = 0; // Reset to start for next play
+    timerAudioRef.current.currentTime = 0;
   };
 
   const playFinishSound = () => {
@@ -110,14 +163,13 @@ function SettingsContextProvider(props) {
         playTimerSound,
         pauseTimerSound,
         playFinishSound,
+        sessionCount,
+        totalSessions,
       }}
     >
       {props.children}
     </SettingsContext.Provider>
   );
 }
-
-
-
 
 export default SettingsContextProvider;

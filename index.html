@@ -3,29 +3,30 @@
 
 <head>
   <meta charset="UTF-8" />
-  <!-- <link rel="icon" type="image/svg+xml" href="/vite.svg" /> -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>POMODORO</title>
 </head>
 
 <body>
-
   <div class="header">
     <div class="left">
       <ul>
-        <li><a href="#">Badge</a></li>
+        <li><a href="#" id="session-display">SESSION</a></li>
       </ul>
     </div>
     <div class="right">
       <ul>
-        <li><a href="#">Leaderboard</a></li>
+        <li><a href="#" onclick="resetPomodoroApp()">RESET</a></li>
       </ul>
     </div>
   </div>
-
-
   <div id="root"></div>
   <script type="module" src="/src/main.jsx"></script>
+  <script>
+    function resetPomodoroApp() {
+      window.dispatchEvent(new CustomEvent('resetPomodoro'));
+    }
+  </script>
 </body>
 
 </html>

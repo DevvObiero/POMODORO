@@ -33,7 +33,6 @@ const SetPomodoro = () => {
     <div className="form-container">
       <form noValidate onSubmit={handleSubmit}>
         <div className="input-wrapper">
-          {/* <label>Durations (minutes)</label> */}
           <input
             className="input"
             type="number"
@@ -46,7 +45,7 @@ const SetPomodoro = () => {
           <input
             className="input"
             type="number"
-            name="shortBreak"
+            name="short"
             placeholder="Short Break"
             onChange={handleChange}
             value={newTimer.short}
@@ -55,7 +54,7 @@ const SetPomodoro = () => {
           <input
             className="input"
             type="number"
-            name="longBreak"
+            name="long"
             placeholder="Long Break"
             onChange={handleChange}
             value={newTimer.long}

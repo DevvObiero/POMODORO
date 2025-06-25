@@ -1,8 +1,8 @@
-import React, { useEffect, useContext } from 'react';
-import Button from './components/Button';
-import CountdownAnimation from './components/CountdownAnimation';
-import SetPomodoro from './components/SetPomodoro';
-import { SettingsContext } from './context/SettingsContext';
+import React, { useEffect, useContext } from "react";
+import Button from "./components/Button";
+import CountdownAnimation from "./components/CountdownAnimation";
+import SetPomodoro from "./components/SetPomodoro";
+import { SettingsContext } from "./context/SettingsContext";
 
 const App = () => {
   const {
@@ -20,7 +20,8 @@ const App = () => {
   } = useContext(SettingsContext);
 
   useEffect(() => {
-    updateExecute(executing);
+    console.log("Pomodoro:", pomodoro, "Executing:", executing); // Debug log
+    // Removed updateExecute to prevent unintended state resets
   }, [executing, startAnimate]);
 
   useEffect(() => {
@@ -33,59 +34,61 @@ const App = () => {
 
   return (
     <div className="container">
-      <h1>Pomodoro</h1>
-      <small className='bomboclat' >Maximize your Productivity</small>
+      <h1>Pomodoro Timer</h1>
+      <small className="bomboclat">Maximize your Productivity</small>
       {pomodoro !== 0 ? (
         <>
           <ul className="labels">
             <li>
               <Button
                 title="Work"
-                activeClass={executing.active === 'work' ? 'active-label' : undefined}
-                _callback={() => setCurrentTimer('work')}
+                activeClass={executing.active === "work" ? "active-label" : undefined}
+                _callback={() => setCurrentTimer("work")}
               />
             </li>
             <li>
               <Button
                 title="Short Break"
-                activeClass={executing.active === 'short' ? 'active-label' : undefined}
-                _callback={() => setCurrentTimer('short')}
+                activeClass={executing.active === "short" ? "active-label" : undefined}
+                _callback={() => setCurrentTimer("short")}
               />
             </li>
             <li>
               <Button
                 title="Long Break"
-                activeClass={executing.active === 'long' ? 'active-label' : undefined}
-                _callback={() => setCurrentTimer('long')}
+                activeClass={executing.active === "long" ? "active-label" : undefined}
+                _callback={() => setCurrentTimer("long")}
               />
             </li>
           </ul>
           <Button title="Settings" _callback={SettingsBtn} />
-      
-         <div className="center-block">
-  <div className="timer-container">
-    <div className="time-wrapper">
-      <CountdownAnimation key={pomodoro} timer={pomodoro} animate={startAnimate}>
-        {children}
-      </CountdownAnimation>
-    </div>
-  </div>
-  <div className="button-wrapper">
-    <Button
-      title="Start"
-      className="start"
-      activeClass={!startAnimate ? 'active' : undefined}
-      _callback={startTimer}
-    />
-    <Button
-      title="Pause"
-      className="pause"
-      activeClass={startAnimate ? 'active' : undefined}
-      _callback={pauseTimer}
-    />
-  </div>
-</div>
-
+          <div className="center-block">
+            <div className="timer-container">
+              <div className="time-wrapper">
+                <CountdownAnimation
+                  key={pomodoro}
+                  timer={pomodoro}
+                  animate={startAnimate}
+                >
+                  {children}
+                </CountdownAnimation>
+              </div>
+            </div>
+            <div className="button-wrapper">
+              <Button
+                title="Start"
+                className="start"
+                activeClass={!startAnimate ? "active" : undefined}
+                _callback={startTimer}
+              />
+              <Button
+                title="Pause"
+                className="pause"
+                activeClass={startAnimate ? "active" : undefined}
+                _callback={pauseTimer}
+              />
+            </div>
+          </div>
         </>
       ) : (
         <SetPomodoro />
