@@ -2,12 +2,14 @@
   "name": "pomodoro-2",
   "private": true,
   "version": "0.0.0",
+  "homepage": ".",
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
-    "lint": "eslint .",
-    "preview": "vite preview"
+  "build": "vite build",
+  "preview": "vite preview",
+  "electron": "electron public/electron.cjs",
+  "start-desktop": "npm run build && npm run electron"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.10",
@@ -21,6 +23,7 @@
     "@types/react": "^19.1.2",
     "@types/react-dom": "^19.1.2",
     "@vitejs/plugin-react": "^4.4.1",
+    "electron": "^37.1.0",
     "eslint": "^9.25.0",
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.19",
