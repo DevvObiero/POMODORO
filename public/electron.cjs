@@ -5,15 +5,16 @@ const url = require('url');
 function createMainWindow() {
   const { width, height } = screen.getPrimaryDisplay().workAreaSize;
 
-  const mainWindow = new BrowserWindow({
-    width,
-    height,
-    resizable: true,
-    autoHideMenuBar: true,
-    webPreferences: {
-      nodeIntegration: false,
-    },
-  });
+ const mainWindow = new BrowserWindow({
+  width,
+  height,
+  resizable: true,
+  autoHideMenuBar: true,
+  icon: path.join(__dirname, '../public/icon.ico'), // 👈  this is the path to my icon
+  webPreferences: {
+    nodeIntegration: false,
+  },
+});
 
   const startUrl = url.format({
     pathname: path.join(__dirname, '../dist/index.html'),
