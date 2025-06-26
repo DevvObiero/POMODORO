@@ -1,60 +1,43 @@
-Project Title
-AlX Pomodoro – A Minimalist Productivity Timer
+# Alex Pomodoro – A Minimalist Productivity Timer
 
-Description
+## Description
 Alex Pomodoro is a lightweight, distraction-free Pomodoro timer designed to help users stay focused and prevent burnout. Built with React and Tailwind CSS, the application supports configurable work sessions, short breaks, and long breaks to promote balance and structure during deep work periods.
 
-Features
-Start, pause, and reset timers
+## Features
+- Start, pause, and reset timers
+- Customizable session lengths
+- Visual countdown display
+- Clean, responsive user interface
+- Built-in lofi focus sounds and ambiance
+- Web version hosted on Netlify
+- ElectronJS integration (in progress) to support desktop app version
 
-Customizable session lengths
+## Technologies Used
+- **Frontend:** React, Tailwind CSS, HTML
+- **Desktop App (in progress):** ElectronJS
+- **Hosting:** Netlify
 
-Visual countdown display
+## Future Enhancements
+- Desktop notifications at session start/end
+- Sound alerts for breaks and work cycles
+- Desktop application build using Electron
+- Option to log focus sessions locally
 
-Clean, responsive user interface
+## Setup Instructions (Web)
+1. Clone this repository
+2. Run `npm install`
+3. Start the app with `npm start`
+4. Access via `localhost:3000` or [Netlify live link]
 
-Built with React, styled using Tailwind CSS
+## Setup Instructions (Electron - In Progress)
+1. Build the React app: `npm run build`
+2. Run Electron: `npm run electron`
+3. App will launch in a new desktop window
 
-Web version hosted on Netlify
-
-ElectronJS integration (in progress) to support desktop app version
-
-Technologies Used
-Frontend: React, Tailwind CSS, HTML
-
-Desktop App (in progress): ElectronJS
-
-Hosting: Netlify
-
-Future Enhancements
-Desktop notifications at session start/end
-
-Sound alerts
-
-Desktop application build using Electron
-
-Option to log focus sessions locally
-
-Setup Instructions (Web)
-Clone this repository
-
-Run npm install
-
-Start the app with npm start
-
-Access via localhost:3000 or [Netlify live link]
-
-Setup Instructions (Electron - In Progress)
-Build the React app: npm run build
-
-Run Electron: npm run electron
-
-App will launch in a new desktop window
-
-Motivation
+## Motivation
 Built as part of my personal project journey at ALX ProDev and intended to help students practice sustainable productivity while learning software engineering.
 
-Author
-Paul Obiero
-Frontend Developer | ALX ProDev Student
-
+## Author
+**Paul Obiero**  
+Frontend Developer | ALX ProDev Student  
+[paulobiero.netlify.app](https://paulobiero.netlify.app)
