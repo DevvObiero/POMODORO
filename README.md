@@ -1,12 +1,60 @@
-# React + Vite
+Project Title
+AlX Pomodoro – A Minimalist Productivity Timer
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Description
+Alex Pomodoro is a lightweight, distraction-free Pomodoro timer designed to help users stay focused and prevent burnout. Built with React and Tailwind CSS, the application supports configurable work sessions, short breaks, and long breaks to promote balance and structure during deep work periods.
 
-Currently, two official plugins are available:
+Features
+Start, pause, and reset timers
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Customizable session lengths
 
-## Expanding the ESLint configuration
+Visual countdown display
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Clean, responsive user interface
+
+Built with React, styled using Tailwind CSS
+
+Web version hosted on Netlify
+
+ElectronJS integration (in progress) to support desktop app version
+
+Technologies Used
+Frontend: React, Tailwind CSS, HTML
+
+Desktop App (in progress): ElectronJS
+
+Hosting: Netlify
+
+Future Enhancements
+Desktop notifications at session start/end
+
+Sound alerts
+
+Desktop application build using Electron
+
+Option to log focus sessions locally
+
+Setup Instructions (Web)
+Clone this repository
+
+Run npm install
+
+Start the app with npm start
+
+Access via localhost:3000 or [Netlify live link]
+
+Setup Instructions (Electron - In Progress)
+Build the React app: npm run build
+
+Run Electron: npm run electron
+
+App will launch in a new desktop window
+
+Motivation
+Built as part of my personal project journey at ALX ProDev and intended to help students practice sustainable productivity while learning software engineering.
+
+Author
+Paul Obiero
+Frontend Developer | ALX ProDev Student
+
