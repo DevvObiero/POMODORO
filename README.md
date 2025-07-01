@@ -33,6 +33,7 @@ Alex Pomodoro is a lightweight, distraction-free Pomodoro timer designed to help
 1. Build the React app: `npm run build`
 2. Run Electron: `npm run electron`
 3. App will launch in a new desktop window
+$I THINK I DID IT
 
 ## Motivation
 Built as part of my personal project journey at ALX ProDev and intended to help students practice sustainable productivity while learning software engineering.
